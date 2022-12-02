@@ -54,15 +54,27 @@ namespace MyGuestbook
                         Console.Clear();
                         Console.CursorVisible = true;
 
-                        //Namn
-                        Console.Write("Ange ditt namn: ");
-                        var name = Console.ReadLine();
-                        if (String.IsNullOrEmpty(name))
+
+                        //Tom textsträng för namn
+                        string name = "";
+
+                        //While-loop som körs medans name är tomt
+                        while (String.IsNullOrEmpty(name))
                         {
-                            Console.WriteLine("Namn måste fyllas i. Klicka på valfri knapp för att starta om");
-                            Console.ReadKey();
-                            break;
+
+                            //Läser in användarens input
+                            Console.Write("Ange ditt namn: ");
+                            name = Console.ReadLine();
+
+                            //Skriver ut felmeddelande om namn fortfarande är tomt
+                            if (String.IsNullOrEmpty(name))
+                            {
+                                Console.WriteLine("Namn måste fyllas i");
+                                Console.ReadKey();
+                            }
+
                         }
+
 
                         //Instansierar klassen Post
                         Post obj = new();
@@ -72,13 +84,25 @@ namespace MyGuestbook
                             obj.Name = name;
                         }
 
+                        //Tom textsträng för innehåll
+                        string content = "";
 
-                        Console.Write("Skriv inlägg: ");
-                        var content = Console.ReadLine();
-                        if (String.IsNullOrEmpty(content))
+
+                        //While-loop som körs medans textsträngen content är tom
+                        while (String.IsNullOrEmpty(content))
                         {
-                            Console.WriteLine("Innehåll måste fyllas i");
-                            Console.ReadKey();
+
+                            //Läser in användarens input
+                            Console.Write("Skriv inlägg: ");
+                            content = Console.ReadLine();
+
+
+                            //Skriver ut felmeddelande om textsträng fortfarande är tom
+                            if (String.IsNullOrEmpty(content))
+                            {
+                                Console.WriteLine("Innehåll måste fyllas i");
+                                Console.ReadKey();
+                            }
                         }
 
 
@@ -94,19 +118,23 @@ namespace MyGuestbook
 
                         break;
 
+
                     case '2':
-                        Console.Clear();
                         Console.CursorVisible = true;
-                        Console.Write("Ange nummer att radera: ");
+                        Console.Write("Ta bort ett inlägg genom att ange vilket nummer som ska raderas: ");
                         var index = Console.ReadLine();
+
+                        if (String.IsNullOrEmpty(index))
+                        {
+                            Console.WriteLine("En siffra måste väljas");
+
+                        }
                         if (index is not null)
                         {
                             guestbook.DeletePost(Convert.ToInt32(index));
                         }
-                        else
-                        {
-                            Console.WriteLine("Ett nummer måste väljas");
-                        }
+
+                        Console.Clear();
                         break;
                     case 88:
                         Console.Clear();
