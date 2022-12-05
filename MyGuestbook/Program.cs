@@ -23,7 +23,7 @@ namespace MyGuestbook
 
                 Console.Clear(); Console.CursorVisible = false;
                 Console.Clear();
-                Console.WriteLine("++===========Emmas Gästbok===========++");
+                Console.WriteLine("|++===========Emmas Gästbok===========++|");
 
                 Console.WriteLine("\n1. Skriv i gästbok");
                 Console.WriteLine("2. Ta bort inlägg");
@@ -51,7 +51,6 @@ namespace MyGuestbook
                 switch (input)
                 {
                     case '1':
-                        Console.Clear();
                         Console.CursorVisible = true;
 
 
@@ -63,7 +62,7 @@ namespace MyGuestbook
                         {
 
                             //Läser in användarens input
-                            Console.Write("Ange ditt namn: ");
+                            Console.Write("\nAnge ditt namn: ");
                             name = Console.ReadLine();
 
                             //Skriver ut felmeddelande om namn fortfarande är tomt
@@ -119,22 +118,13 @@ namespace MyGuestbook
                         break;
 
 
+                    //Om användaren väljer siffran 2 för att ta bort ett inlägg
                     case '2':
                         Console.CursorVisible = true;
                         Console.Write("Ta bort ett inlägg genom att ange vilket nummer som ska raderas: ");
-                        var index = Console.ReadLine();
-
-                        if (String.IsNullOrEmpty(index))
-                        {
-                            Console.WriteLine("En siffra måste väljas");
-
-                        }
-                        if (index is not null)
-                        {
-                            guestbook.DeletePost(Convert.ToInt32(index));
-                        }
-
-                        Console.Clear();
+                        string index = Console.ReadLine();
+                        //Anropar metoden DeletePost och konverterar input till int
+                        guestbook.DeletePost(Convert.ToInt32(index));
                         break;
                     case 88:
                         Console.Clear();
