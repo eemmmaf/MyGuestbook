@@ -68,7 +68,7 @@ namespace MyGuestbook
                             //Skriver ut felmeddelande om namn fortfarande är tomt
                             if (String.IsNullOrEmpty(name))
                             {
-                                Console.WriteLine("Namn måste fyllas i");
+                                Console.WriteLine("Namn måste fyllas i. Tryck på valfri knapp för att försöka igen");
                                 Console.ReadKey();
                             }
 
@@ -97,7 +97,7 @@ namespace MyGuestbook
                             //Skriver ut felmeddelande om textsträng fortfarande är tom
                             if (String.IsNullOrEmpty(content))
                             {
-                                Console.WriteLine("Innehåll måste fyllas i");
+                                Console.WriteLine("Innehåll måste fyllas i. Tryck på valfri knapp för att försöka igen");
                                 Console.ReadKey();
                             }
                         }
@@ -119,10 +119,32 @@ namespace MyGuestbook
                     //Om användaren väljer siffran 2 för att ta bort ett inlägg
                     case '2':
                         Console.CursorVisible = true;
-                        Console.Write("Ta bort ett inlägg genom att ange vilket nummer som ska raderas: ");
-                        string index = Console.ReadLine();
+                        //Sätter index till en tom text-sträng
+                        string inputIndex = "";
+
+                        //While-loop som körs medans index är tom
+                        while (String.IsNullOrEmpty(inputIndex))
+                        {
+
+                            //Frågar användaren om input
+                            Console.Write("Ta bort ett inlägg genom att ange vilket nummer som ska raderas: ");
+                            //Läser in
+                            inputIndex = Console.ReadLine();
+
+
+                            //Kontroll om index fortfarande är tomt
+                            if (String.IsNullOrEmpty(inputIndex))
+                            {
+                                //Skriver ut felmeddelande
+                                Console.WriteLine("Siffra måste väljas. Försök igen");
+                                Console.ReadKey();
+                            }
+                        }
+
+                        //Konverterar input från användare till int
+                        int index = Convert.ToInt32(inputIndex);
                         //Anropar metoden DeletePost och konverterar input till int
-                        guestbook.DeletePost(Convert.ToInt32(index));
+                        guestbook.DeletePost(Convert.ToInt32(inputIndex));
                         break;
                     case 88:
                         Console.Clear();
