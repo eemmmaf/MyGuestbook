@@ -74,7 +74,6 @@ namespace MyGuestbook
 
                         }
 
-
                         //Instansierar klassen Post
                         Post obj = new();
                         //Kontroll om namn inte är null
@@ -85,7 +84,6 @@ namespace MyGuestbook
 
                         //Tom textsträng för innehåll
                         string content = "";
-
 
                         //While-loop som körs medans textsträngen content är tom
                         while (String.IsNullOrEmpty(content))
